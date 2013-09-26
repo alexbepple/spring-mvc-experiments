@@ -13,7 +13,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 public class GreetingControllerTest {
     @InjectMocks
-    private GreetingController greetingController = new GreetingController();
+    private GreetingController greetingController;
 
     @Mock
     private DictatorDetector detector;
