@@ -13,22 +13,13 @@ public class Application {
     }
 
     @Bean
-    public EndearmentService endearmentService() {
-        return new EndearmentService() {
+    public GreetingService greetingService() {
+        return new GreetingService() {
             @Override
-            public String decorate(String name) {
-                return "dear " + name;
+            public String greet(String name) {
+                return String.format("Hello, %s!",name);
             }
         };
     }
 
-    @Bean
-    public DictatorDetector dictatorDetector() {
-        return new DictatorDetector() {
-            @Override
-            public boolean isDictator(String name) {
-                return name.contains("Adolf");
-            }
-        };
-    }
 }

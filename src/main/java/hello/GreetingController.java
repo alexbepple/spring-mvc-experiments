@@ -10,21 +10,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class GreetingController {
 
     @Autowired
-    private EndearmentService endearment;
-
-    @Autowired
-    private DictatorDetector detector;
+    private GreetingService greetingService;
 
     @RequestMapping("/greet")
-    public String greeting(
-        @RequestParam(value = "name", required = false, defaultValue = "World") String name,
-        Model model)
+    public String greet(
+		@RequestParam(value = "name", required = false, defaultValue = "World") String name,
+		Model model)
     {
-        if (detector.isDictator(name))
-            model.addAttribute("errorKey", "NO_GREETING_FOR_DICTATORS");
-        else
-            model.addAttribute("name", endearment.decorate(name));
-
+		model.addAttribute("greeting", greetingService.greet(name));
         return "greeting";
     }
 }

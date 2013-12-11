@@ -6,8 +6,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.ui.ExtendedModelMap;
 
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.anyString;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -16,20 +16,25 @@ public class GreetingControllerTest {
     private GreetingController greetingController;
 
     @Mock
-    private DictatorDetector detector;
+    private GreetingService greetingService;
+	private final ExtendedModelMap model = new ExtendedModelMap();
 
-    @Before
+	@Before
     public void setup() {
         initMocks(this);
     }
 
-    @Test
-    public void refusesToGreetDictators() throws Exception {
-        when(detector.isDictator(anyString())).thenReturn(true);
+	@Test
+	public void usesGreetingView() throws Exception {
+		assertThat(greetingController.greet("foo", model), is("greeting"));
+	}
 
-        ExtendedModelMap model = new ExtendedModelMap();
-        greetingController.greeting("foo", model);
-        assertTrue(model.containsKey("errorKey"));
-    }
+	@Test
+    public void passesOnGreeting() throws Exception {
+		when(greetingService.greet("foo")).thenReturn("result");
+
+		greetingController.greet("foo", model);
+		assertThat(model.get("greeting").toString(), is("result"));
+	}
 
 }
