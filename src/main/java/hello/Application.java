@@ -22,4 +22,23 @@ public class Application {
         };
     }
 
+	@Bean
+	public DictatorDetector dictatorDetector() {
+		return new DictatorDetector() {
+			@Override
+			public boolean isDictator(String name) {
+				return false;
+			}
+		};
+	}
+
+	@Bean LogService logService() {
+		return new LogService() {
+			@Override
+			public void logWhatever(String whatever) {
+				System.out.println(whatever);
+			}
+		};
+	}
+
 }
