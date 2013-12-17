@@ -3,7 +3,7 @@
 This is a teaching example that shows
 
 * the different appropriate levels of unit and integration testing with Spring MVC
-* proper use of test doubles (stubs and mocks) as well as ArgumentCaptor
+* proper use of test doubles (stubs and mocks) as well as ArgumentCaptor and custom matchers
 
 
 # Getting started
