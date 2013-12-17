@@ -76,6 +76,9 @@ public class GreetingControllerTest {
 
 	/**
 	 * Demonstrates the use of an ArgumentCaptor for when Mockito matchers are not enough.
+	 *
+	 * Read up on capturing arguments:
+	 * http://docs.mockito.googlecode.com/hg/latest/org/mockito/Mockito.html#captors
 	 */
 	@Test
 	public void logs3CharacterString() throws Exception {
@@ -89,6 +92,12 @@ public class GreetingControllerTest {
 	/**
 	 * In many cases a custom matcher (here: hasLength) is much more expressive
 	 * than an ArgumentCaptor.
+	 *
+	 * Mockito uses Hamcrest matchers via `argThat`:
+	 * http://docs.mockito.googlecode.com/hg/latest/org/mockito/Mockito.html#argument_matchers
+	 *
+	 * Write custom Hamcrest matcher:
+	 * https://code.google.com/p/hamcrest/wiki/Tutorial#Writing_custom_matchers
 	 */
 	@Test
 	public void logs3CharacterString_betterVersion() throws Exception {
